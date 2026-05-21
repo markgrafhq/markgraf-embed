@@ -10,8 +10,8 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      # OIDC: GitHub mints a short-lived token that npm validates
-      # against the Trusted Publisher configured for this package.
+      # OIDC: GitHub mints a short-lived token that npm exchanges for a
+      # publish credential via the Trusted Publisher configured on the package.
       id-token: write
       contents: read
     steps:
@@ -20,6 +20,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-          registry-url: "https://registry.npmjs.org"
+
+      # npm 11.5.1+ is required for the OIDC-based trusted publishing flow;
+      # the npm bundled with Node 22 is older.
+      - run: npm install -g npm@latest
 
       - run: npm publish --provenance --access public
