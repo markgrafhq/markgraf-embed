@@ -17,12 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node 24 ships npm 11.x, which has the OIDC-based trusted publishing
+      # flow built in.  Older Node versions ship npm 10.x and would need a
+      # global upgrade, which doesn't work cleanly inside npm itself.
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-
-      # npm 11.5.1+ is required for the OIDC-based trusted publishing flow;
-      # the npm bundled with Node 22 is older.
-      - run: npm install -g npm@latest
+          node-version: "24"
 
       - run: npm publish --provenance --access public
