@@ -1,0 +1,41 @@
+{
+  "name": "@markgrafhq/markgraf-embed",
+  "version": "0.1.0",
+  "description": "Embeddable Canvas2D player for markgraf animations. Drop-in for any HTML page or bundler.",
+  "type": "module",
+  "main": "./dist/markgraf-embed.js",
+  "module": "./dist/markgraf-embed.js",
+  "browser": "./dist/markgraf-embed.js",
+  "style": "./dist/markgraf-embed.css",
+  "exports": {
+    ".": {
+      "default": "./dist/markgraf-embed.js"
+    },
+    "./dist/markgraf-embed.js": "./dist/markgraf-embed.js",
+    "./dist/markgraf-embed.css": "./dist/markgraf-embed.css",
+    "./css": "./dist/markgraf-embed.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": true,
+  "keywords": [
+    "markgraf",
+    "animation",
+    "diagram",
+    "graph",
+    "canvas",
+    "embed",
+    "documentation"
+  ],
+  "license": "MIT",
+  "author": "Mark Eibes <mark.eibes@gmail.com>",
+  "homepage": "https://github.com/markgrafhq/markgraf-www#readme",
+  "bugs": "https://github.com/markgrafhq/markgraf-www/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markgrafhq/markgraf-www.git"
+  }
+}
