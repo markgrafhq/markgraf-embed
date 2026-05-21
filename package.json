@@ -32,10 +32,10 @@
   ],
   "license": "MIT",
   "author": "Mark Eibes <mark.eibes@gmail.com>",
-  "homepage": "https://github.com/markgrafhq/markgraf-www#readme",
-  "bugs": "https://github.com/markgrafhq/markgraf-www/issues",
+  "homepage": "https://github.com/markgrafhq/markgraf-embed#readme",
+  "bugs": "https://github.com/markgrafhq/markgraf-embed/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markgrafhq/markgraf-www.git"
+    "url": "git+https://github.com/markgrafhq/markgraf-embed.git"
   }
 }
