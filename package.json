@@ -1,6 +1,6 @@
 {
   "name": "@markgrafhq/markgraf-embed",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Embeddable Canvas2D player for markgraf animations. Drop-in for any HTML page or bundler.",
   "type": "module",
   "main": "./dist/markgraf-embed.js",
