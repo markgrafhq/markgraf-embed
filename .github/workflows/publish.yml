@@ -25,3 +25,24 @@ jobs:
           node-version: "24"
 
       - run: npm publish --provenance --access public
+
+  notify:
+    needs: [publish]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Discord notify
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          STATUS: ${{ needs.publish.result }}
+          REPO: ${{ github.repository }}
+          REF: ${{ github.ref_name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ "$STATUS" = "success" ]; then COLOR=3066993; EMOJI=":white_check_mark:"; else COLOR=15158332; EMOJI=":x:"; fi
+          jq -n --arg title "$EMOJI $REPO $REF" \
+                --arg desc "npm publish: $STATUS" \
+                --arg url "$RUN_URL" \
+                --argjson color "$COLOR" \
+            '{embeds:[{title:$title,description:$desc,url:$url,color:$color}]}' \
+            | curl -sS -X POST -H 'Content-Type: application/json' -d @- "$WEBHOOK"
