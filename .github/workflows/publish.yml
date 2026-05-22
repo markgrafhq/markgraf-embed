@@ -31,6 +31,10 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - name: Discord notify
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -38,19 +42,5 @@ jobs:
           REPO: ${{ github.repository }}
           REF: ${{ github.ref_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: |
-          python3 <<'PY'
-          import json, os, urllib.request
-          status = os.environ["STATUS"]
-          ok = status == "success"
-          body = json.dumps({"embeds":[{
-              "title": f"{'✅' if ok else '❌'} {os.environ['REPO']} {os.environ['REF']}",
-              "description": f"npm publish: {status}",
-              "url": os.environ["RUN_URL"],
-              "color": 3066993 if ok else 15158332,
-          }]}).encode()
-          req = urllib.request.Request(
-              os.environ["WEBHOOK"], data=body,
-              headers={"Content-Type": "application/json"})
-          urllib.request.urlopen(req).read()
-          PY
+          DESCRIPTION: "npm publish: ${{ needs.publish.result }}"
+        run: node .github/scripts/notify.mjs
