@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Ioskeley Mono';
-  src: url('./IoskeleyMono-Regular.woff2') format('woff2');
+  font-family: 'CommitMono';
+  src: url('./CommitMono-Regular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }

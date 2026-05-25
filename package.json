@@ -13,7 +13,11 @@
     },
     "./dist/markgraf-embed.js": "./dist/markgraf-embed.js",
     "./dist/markgraf-embed.css": "./dist/markgraf-embed.css",
-    "./css": "./dist/markgraf-embed.css"
+    "./css": {
+      "style": "./dist/markgraf-embed.css",
+      "default": "./dist/markgraf-embed.css"
+    },
+    "./dist/CommitMono-Regular.woff2": "./dist/CommitMono-Regular.woff2"
   },
   "files": [
     "dist",
@@ -32,10 +36,10 @@
   ],
   "license": "MIT",
   "author": "Mark Eibes <mark.eibes@gmail.com>",
-  "homepage": "https://github.com/markgrafhq/markgraf-embed#readme",
-  "bugs": "https://github.com/markgrafhq/markgraf-embed/issues",
+  "homepage": "https://github.com/markgrafhq/markgraf-www#readme",
+  "bugs": "https://github.com/markgrafhq/markgraf-www/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/markgrafhq/markgraf-embed.git"
+    "url": "git+https://github.com/markgrafhq/markgraf-www.git"
   }
 }
