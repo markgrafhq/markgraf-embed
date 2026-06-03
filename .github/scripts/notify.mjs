@@ -639,7 +639,6 @@ var $lazy_applyEffect = /* @__PURE__ */ $runtime_lazy("applyEffect", "Effect", f
   };
 });
 var functorEffect = /* @__PURE__ */ $lazy_functorEffect(20);
-var applyEffect = /* @__PURE__ */ $lazy_applyEffect(23);
 // output/Control.Monad.Rec.Class/index.js
 var Loop = /* @__PURE__ */ function() {
   function Loop2(value0) {
@@ -2422,9 +2421,6 @@ var channelUnrefImpl = process.channel && process.channel.unref ? () => process.
 var debugPort = process.debugPort;
 var disconnectImpl = process.disconnect ? () => process.disconnect() : null;
 var unsafeGetEnv = () => process.env;
-var setExitCodeImpl = (code) => {
-  process.exitCode = code;
-};
 var pid = process.pid;
 var platformStr = process.platform;
 var ppid = process.ppid;
@@ -2474,11 +2470,6 @@ var lookup = /* @__PURE__ */ function() {
 }();
 // output/Node.Process/index.js
 var map5 = /* @__PURE__ */ map(functorEffect);
-var setExitCode = function(code) {
-  return function() {
-    return setExitCodeImpl(code);
-  };
-};
 var lookupEnv = function(k) {
   return map5(lookup(k))(unsafeGetEnv);
 };
@@ -5379,11 +5370,10 @@ var okIsSymbol = {
   }
 };
 var readForeignRecord2 = /* @__PURE__ */ readForeignRecord();
+var error5 = /* @__PURE__ */ error3(monadEffectEffect);
 var bind7 = /* @__PURE__ */ bind(bindOm);
 var pure8 = /* @__PURE__ */ pure(applicativeOm);
 var liftEffect1 = /* @__PURE__ */ liftEffect(monadEffectAff);
-var applySecond2 = /* @__PURE__ */ applySecond(applyEffect);
-var error5 = /* @__PURE__ */ error3(monadEffectEffect);
 var show4 = /* @__PURE__ */ show(showInt);
 var error1 = /* @__PURE__ */ error3(monadEffectOm);
 var handleErrors2 = /* @__PURE__ */ handleErrors()()();
@@ -5396,9 +5386,9 @@ var serializeParamWebhookId = {
 };
 var serializeParamWaitForResp = {
   serializeParam: /* @__PURE__ */ function() {
-    var $204 = serializeParam(serializeParamBoolean);
-    return function($205) {
-      return $204(unwrap3($205));
+    var $203 = serializeParam(serializeParamBoolean);
+    return function($204) {
+      return $203(unwrap3($204));
     };
   }()
 };
@@ -5421,7 +5411,7 @@ var parseWebhook = function(url2) {
     }
     return Nothing.value;
   }
-  throw new Error("Failed pattern match at Main (line 131, column 20 - line 137, column 17): " + [v.constructor.name]);
+  throw new Error("Failed pattern match at Main (line 133, column 20 - line 139, column 17): " + [v.constructor.name]);
 };
 var env = function(key) {
   return liftEffect5(map10(fromMaybe(""))(lookupEnv(key)));
@@ -5483,8 +5473,8 @@ var buildPayload = function(f) {
     embeds: [{
       title: emoji + (" " + (f.repo + (" " + f.ref))),
       description: function() {
-        var $197 = f.desc === "";
-        if ($197) {
+        var $196 = f.desc === "";
+        if ($196) {
           return "status: " + f.status;
         }
         return f.desc;
@@ -5500,6 +5490,9 @@ var buildPayload = function(f) {
   };
 };
 var main = /* @__PURE__ */ function() {
+  var warn2 = function(msg) {
+    return liftEffect5(error5(msg));
+  };
   var readFields = bind7(env("STATUS"))(function(status3) {
     return bind7(env("REPO"))(function(repo) {
       return bind7(env("REF"))(function(ref) {
@@ -5519,29 +5512,26 @@ var main = /* @__PURE__ */ function() {
   });
   var handlers = {
     exception: function(e) {
-      return liftEffect1(applySecond2(error5("Discord notify failed: " + message(e)))(setExitCode(1)));
+      return liftEffect1(error5("Discord notify failed: " + message(e)));
     },
     fetchError: function(e) {
-      return liftEffect1(applySecond2(error5("Discord notify failed (HTTP " + (show4(e.status) + ("): " + e.body))))(setExitCode(1)));
+      return liftEffect1(error5("Discord notify failed (HTTP " + (show4(e.status) + ("): " + e.body))));
     }
   };
-  var failWith = function(msg) {
-    return liftEffect5(applySecond2(error5(msg))(setExitCode(1)));
-  };
   return launchOm_()()()({})(handlers)(bind7(env("WEBHOOK"))(function(webhook) {
-    var $199 = webhook === "";
-    if ($199) {
+    var $198 = webhook === "";
+    if ($198) {
       return error1("DISCORD_WEBHOOK secret is empty; skipping notification.");
     }
     var v = parseWebhook(webhook);
     if (v instanceof Nothing) {
-      return failWith("Could not parse webhook URL: " + webhook);
+      return warn2("Could not parse webhook URL: " + webhook);
     }
     if (v instanceof Just) {
       return bind7(readFields)(function(fields) {
         return bind7(handleErrors2({
           badRequest: function(err) {
-            return discard2(failWith("Discord rejected payload: " + err.message))(function() {
+            return discard2(warn2("Discord rejected payload: " + err.message))(function() {
               return pure8({
                 id: "",
                 channel_id: ""
