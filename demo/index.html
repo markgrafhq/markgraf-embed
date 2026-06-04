@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>markgraf-embed — live demo</title>
+  <link rel="stylesheet" href="./markgraf-embed.css">
+  <style>
+    :root { color-scheme: light; }
+    body {
+      margin: 0;
+      padding: 2.5rem 1.25rem 4rem;
+      font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: #111;
+      background: #fafafa;
+    }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
+    .lede { color: #555; margin: 0 0 2.5rem; }
+    h2 { font-size: 1.1rem; margin: 2.5rem 0 .75rem; }
+    code, pre { font-family: "CommitMono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+    a { color: #0a58ca; }
+    footer { margin-top: 3rem; color: #777; font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>markgraf-embed</h1>
+    <p class="lede">
+      A drop-in Canvas2D player for
+      <a href="https://github.com/markgrafhq/markgraf-embed">markgraf</a>
+      animations. Each diagram below is a live, scrubbable player — press play,
+      drag the bar, or hit Space.
+    </p>
+
+    <h2>A simple read</h2>
+    <div data-markgraf>
+seed 1
+frame "a simple read" {
+  +node client "Client"
+  +node api    "API"
+  +edge client api
+  client -> api "GET /user/42"
+  client <- api "200 OK"
+}
+    </div>
+
+    <h2>A request pipeline</h2>
+    <div data-markgraf>
+seed 1
+
+frame setup {
+  +node ingest "Ingest"
+  +node parse "Parse"
+  +node enrich "Enrich"
+  +node store "Store"
+  +edge ingest parse
+  +edge parse enrich
+  +edge enrich store
+  ingest -> parse "raw bytes"
+  parse -> enrich "AST"
+  enrich -> store "record"
+}
+
+frame "add index" {
+  +node index "Index"
+  +edge store index
+  ingest -> parse "raw bytes"
+  parse -> enrich "AST"
+  enrich -> store "record"
+  store -> index "doc"
+}
+    </div>
+
+    <h2>Broker fan-out</h2>
+    <div data-markgraf>
+seed 3
+
+frame setup {
+  +node producer "Producer"
+  +node broker "Broker"
+  +node log "Log"
+  +node metrics "Metrics"
+  +node alerts "Alerts"
+  +node search "Search"
+  +edge producer broker
+  +edge broker log
+  +edge broker metrics
+  +edge broker alerts
+  +edge broker search
+  producer -> broker "order.created"
+  broker -> log "audit"
+  broker -> metrics "count"
+  broker -> alerts "rule check"
+  broker -> search "index"
+}
+    </div>
+
+    <h2>Login flow</h2>
+    <div data-markgraf>
+seed 2
+
+frame setup {
+  +node client "Client"
+  +node gateway "Gateway"
+  +node authsvc "Auth Service"
+  +node session "Session Store"
+  +node user_db "User DB"
+  +edge client gateway
+  +edge gateway authsvc
+  +edge authsvc user_db
+  +edge authsvc session
+  +edge session gateway
+  +edge gateway client
+  client -> gateway "POST /login"
+  gateway -> authsvc "verify"
+  authsvc -> user_db "SELECT user"
+  authsvc -> session "issue JWT"
+  session -> gateway "JWT"
+  gateway -> client "200 OK"
+}
+    </div>
+
+    <footer>
+      Players mount automatically from each <code>[data-markgraf]</code> block
+      via <code>@markgrafhq/markgraf-embed</code>.
+    </footer>
+  </main>
+
+  <!--
+    The published bundle is an IIFE that registers window.markgraf and
+    auto-mounts every [data-markgraf] element on load. A plain classic
+    <script> (not type="module") is the documented consumption path.
+  -->
+  <script src="./markgraf-embed.js"></script>
+</body>
+</html>
