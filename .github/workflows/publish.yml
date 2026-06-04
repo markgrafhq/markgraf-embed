@@ -35,6 +35,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      # The release changelog is synced into the tag at .github/release-notes.md
+      # by scripts/release.sh. Post it as the Discord embed body; fall back to
+      # the bare publish status if the file is absent (e.g. a manual dispatch).
+      - name: Build Discord description
+        run: |
+          if [ -s .github/release-notes.md ]; then
+            { echo 'DESCRIPTION<<__NOTES_EOF__'; cat .github/release-notes.md; echo '__NOTES_EOF__'; } >> "$GITHUB_ENV"
+          else
+            echo "DESCRIPTION=npm publish: ${{ needs.publish.result }}" >> "$GITHUB_ENV"
+          fi
       - name: Discord notify
         env:
           WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -42,5 +52,4 @@ jobs:
           REPO: ${{ github.repository }}
           REF: ${{ github.ref_name }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          DESCRIPTION: "npm publish: ${{ needs.publish.result }}"
         run: node .github/scripts/notify.mjs
