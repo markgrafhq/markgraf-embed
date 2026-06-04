@@ -21,6 +21,17 @@
     code, pre { font-family: "CommitMono", ui-monospace, SFMono-Regular, Menlo, monospace; }
     a { color: #0a58ca; }
     footer { margin-top: 3rem; color: #777; font-size: .85rem; }
+    /* Cap the player canvas so each diagram sits in a tidy card instead of
+       reserving the embed default (--mg-max-height: 90svh) and leaving gaps. */
+    [data-markgraf] {
+      --mg-max-height: 320px;
+      max-width: 460px;
+      margin: 0 auto;
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      background: #fff;
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
