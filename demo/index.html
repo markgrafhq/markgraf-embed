@@ -47,7 +47,7 @@
     <h2>A simple read</h2>
     <div data-markgraf>
 seed 1
-frame "a simple read" {
+keyframe "a simple read" {
   +node client "Client"
   +node api    "API"
   +edge client api
@@ -60,7 +60,7 @@ frame "a simple read" {
     <div data-markgraf>
 seed 1
 
-frame setup {
+keyframe setup {
   +node ingest "Ingest"
   +node parse "Parse"
   +node enrich "Enrich"
@@ -73,7 +73,7 @@ frame setup {
   enrich -> store "record"
 }
 
-frame "add index" {
+keyframe "add index" {
   +node index "Index"
   +edge store index
   ingest -> parse "raw bytes"
@@ -87,7 +87,7 @@ frame "add index" {
     <div data-markgraf>
 seed 3
 
-frame setup {
+keyframe setup {
   +node producer "Producer"
   +node broker "Broker"
   +node log "Log"
@@ -111,7 +111,7 @@ frame setup {
     <div data-markgraf>
 seed 2
 
-frame setup {
+keyframe setup {
   +node client "Client"
   +node gateway "Gateway"
   +node authsvc "Auth Service"
