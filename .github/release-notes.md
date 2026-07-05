@@ -1,3 +1,80 @@
-## v0.1.15
+## v0.0.27
 
-- fix(embed): correct the player control layout and time readout
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- build(embed): refresh bundled output
+- fix(diagnostics): suggest missing inside block
+- fix(embed): lower minimum usable viewport
+- docs(dsl): show canonical zoo scene syntax
+- feat(dsl)!: remove legacy surface syntax
+- feat(diagnostics): render source-spanned parse errors
+- feat(dsl): add scene syntax
+- fix(release): keep downstream versions aligned to markgraf tag
+- fix(camera): use readable framing and shared SDF camera
+- feat(layout-export): token labels as Array String for the chip carousel
+- fix(stories): AnimationLive AutoSize canvas fills the box like SVG
+- feat(layout-export): extend token paths to node centres and carry the token label
+- 
+- feat(layout): Layout.Export — source string to flat JS node/edge geometry
+- fix(stories): AutoSize preview no longer balloons without an explicit size
+- fix(stories): Canvas dive keeps the travelling chip glued to its token
+- fix(stories): Canvas dive frames the speech bubble at the same spot as SVG
+- fix(stories): Canvas dive no longer shows the child in front before zooming in
+- fix(player): title pill width stays zoom-independent during dives
+- fix(player): dives start without a one-frame camera jump or title-width pop
+- feat(player): drop the background grid for a clean flat page
+- feat(cli): --frame renders the animation frame at any timestamp to PNG or SVG
+- fix(encode): translucent ink renders true (dot grid, fades) and child-level tokens stay inside their level
+- fix(render): the dive backdrop's page fill is no longer warped by the camera
+- fix(dive): the whole parent level dissolves before the camera lands
+- feat(render): infinite multi-scale page — the dot grid subdivides as you dive
+- fix(dive): every level stands on the same dotted page
+- fix(render): the backdrop dot grid is deterministic — same page on every frame
+- fix(dive): land at a contain-fit so the whole child diagram stays in view
+- fix(dive): containers are opaque boxes at rest — the interior is revealed by the dive
+- fix(dive): the camera flies the dive tween instead of snapping to the landing
+- fix(layout): the container's name band reserves real height — labels sit inside the box again
+- fix(player): the window is paper, not glass — opaque background, and the container gets a floor and a top-band name
+- fix(dive): land inside the room — the dive-end camera covers the container interior
+- fix(dive): nested dives land deep and miniatures draw solid ink
+- fix(dive): fly genuinely through the doorway — full-ink miniatures, borders exit before the frame dissolves, nested dive targets blink
+- feat(dive): the container is a window — always-on interior miniatures, dives become a pure fidelity ramp
+- fix(dive): finish the reveal mid-flight — the container label and frost dissolve while the camera is still flying, the child is fully there before the zoom stops
+- feat(dive): research-tuned fly-through — the child ghosts through the pane from the first frame, no blur, third-size content
+- feat(dive): fly through the container — a frosted pane slowly reveals the quarter-size content behind it
+- feat(player): the Metal player renders the dive depth-of-field on the GPU
+- feat(dive): depth-of-field crossfade — dive transitions blur the level the camera leaves and fade the arriving one in
+- fix(encode): dive docs no longer need ~50x a flat doc's memory to render (MAR-162)
+- fix(release): wrap
