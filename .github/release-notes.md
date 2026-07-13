@@ -1,5 +1,33 @@
-## v0.0.27
+## v0.0.28
 
+- fix(camera): stabilize action focus and dive zoom
+- fix(camera): hold nested dive home between actions
+- fix(camera): bound action panning by revealed subgraph
+- fix(camera): cap readable text at eleven pixels
+- fix(camera): land dives at first child action
+- fix(animation): reveal topology lazily before token travel
+- fix(camera): keep action x within platformer dead-zone
+- fix(camera): keep action focus sticky between nearby hops
+- fix(animation): show topology before token travel
+- fix(dsl): reject unused animated flow topology
+- checkpoint: accept playback options through play wrapper
+- checkpoint: wrap react hook effects for javascript consumers
+- checkpoint: rebuild react bundle after playback target fix
+- checkpoint: make unreachable cue targets fall through to boundary
+- checkpoint: relax cue test timing assumptions
+- checkpoint: build react bundle with cue API
+- checkpoint: expose cue playback API from react hook
+- checkpoint: fix crossed cue helper layout
+- checkpoint: add playback cue controls to embed handle
+- checkpoint: cover step and cue scheduling in tests
+- checkpoint: construct indexed token cue records
+- checkpoint: fix cue schedule node id import
+- checkpoint: step cue parser and schedule metadata
+- 
+- fix(animation): keep action labels readable
+- feat(animation): reveal topology by token travel
+- fix(animation): keep token labels in frame
+- 
 - 
 - 
 - 
@@ -64,17 +92,4 @@
 - fix(render): the backdrop dot grid is deterministic — same page on every frame
 - fix(dive): land at a contain-fit so the whole child diagram stays in view
 - fix(dive): containers are opaque boxes at rest — the interior is revealed by the dive
-- fix(dive): the camera flies the dive tween instead of snapping to the landing
-- fix(layout): the container's name band reserves real height — labels sit inside the box again
-- fix(player): the window is paper, not glass — opaque background, and the container gets a floor and a top-band name
-- fix(dive): land inside the room — the dive-end camera covers the container interior
-- fix(dive): nested dives land deep and miniatures draw solid ink
-- fix(dive): fly genuinely through the doorway — full-ink miniatures, borders exit before the frame dissolves, nested dive targets blink
-- feat(dive): the container is a window — always-on interior miniatures, dives become a pure fidelity ramp
-- fix(dive): finish the reveal mid-flight — the container label and frost dissolve while the camera is still flying, the child is fully there before the zoom stops
-- feat(dive): research-tuned fly-through — the child ghosts through the pane from the first frame, no blur, third-size content
-- feat(dive): fly through the container — a frosted pane slowly reveals the quarter-size content behind it
-- feat(player): the Metal player renders the dive depth-of-field on the GPU
-- feat(dive): depth-of-field crossfade — dive transitions blur the level the camera leaves and fade the arriving one in
-- fix(encode): dive docs no longer need ~50x a flat doc's memory to render (MAR-162)
-- fix(release): wrap
+- fix(dive): the cam
