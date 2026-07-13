@@ -16,11 +16,11 @@ active.
 
 <div data-markgraf>
 seed 1
-keyframe v1 {
-  +node client "Client"
-  +node api "API"
-  +edge client api
-  client -> api "GET /user/42"
+scene v1 {
+  + client: Client
+  + api: API
+  + client -> api
+  client ~> api: GET /user/42
 }
 </div>
 ```
@@ -28,7 +28,7 @@ keyframe v1 {
 ## From a bundler
 
 ```js
-import "@markgrafhq/markgraf-embed/dist/markgraf-embed.css";
+import "@markgrafhq/markgraf-embed/css";
 import "@markgrafhq/markgraf-embed"; // side-effect: registers window.markgraf, auto-mounts
 ```
 
@@ -52,7 +52,7 @@ Set inline CSS on the embed element:
 The script also exposes `window.markgraf`:
 
 ```js
-markgraf.mount(element, "seed 1\nkeyframe v1 { +node a \"A\" }");
+markgraf.mount(element, "seed 1\nscene v1 { + a: A }");
 markgraf.mountAll();           // scan the whole document
 markgraf.mountAll(myContainer); // scan a subtree
 ```
