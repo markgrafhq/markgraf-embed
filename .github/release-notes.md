@@ -1,4 +1,4 @@
-## v0.0.29
+## v0.1.19
 
 - fix(camera): stabilize action focus and dive zoom
 - fix(camera): hold nested dive home between actions
