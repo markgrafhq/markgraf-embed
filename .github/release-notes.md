@@ -1,7 +1,24 @@
-## v0.1.20
+## v0.1.21
 
-- introduce semantic scene interpreters
-- fix camera framing for lazy scenes
-- compact lazy topology schedule gaps
-- add React title visibility option
-- fix React hook JavaScript wrapper
+- feat(dive): add seeded physical doorways and bend-aware framing
+- fix(dive): clamp retreat camera before handoff
+- fix(dive): clamp camera endpoints before handoff
+- fix(dive): preserve camera through back-to-back enters
+- fix(dive): keep nested levels visible across clip gaps
+- fix(dive): match doorway lip shadow paint
+- fix(dive): render doorway lip persistently
+- fix(dive): retain doorway lip through zoom-out
+- fix(dive): restore doorway lip and crossing depth
+- wip: checkpoint pre-lip rendering work
+- fix(dive): restore monotonic no-fade fly-through
+- make terminal release smoke noninteractive
+- bound terminal release smoke shutdown
+- preserve Metal rendering while deferring GUI init
+- defer GUI backend initialization
+- derive CLI version from release tag
+- preserve staged camera continuity
+- use upstream Go FFI module
+- keep site Bun lock synchronized
+- release application integrations automatically
+- wait for npm before syncing wrappers
+- release downstream integrations independently
