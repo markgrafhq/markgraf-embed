@@ -1,4 +1,4 @@
-## v0.1.21
+## v0.1.22
 
 - feat(dive): add seeded physical doorways and bend-aware framing
 - fix(dive): clamp retreat camera before handoff
