@@ -47,12 +47,16 @@
     <h2>A simple read</h2>
     <div data-markgraf>
 seed 1
-keyframe "a simple read" {
-  +node client "Client"
-  +node api    "API"
-  +edge client api
-  client -> api "GET /user/42"
-  client <- api "200 OK"
+scene "A simple read" {
+  + client: Client
+  + api: API
+  + client -> api
+}
+scene request {
+  client ~> api: GET /user/42
+}
+scene response {
+  api ~> client: 200 OK
 }
     </div>
 
@@ -60,26 +64,24 @@ keyframe "a simple read" {
     <div data-markgraf>
 seed 1
 
-keyframe setup {
-  +node ingest "Ingest"
-  +node parse "Parse"
-  +node enrich "Enrich"
-  +node store "Store"
-  +edge ingest parse
-  +edge parse enrich
-  +edge enrich store
-  ingest -> parse "raw bytes"
-  parse -> enrich "AST"
-  enrich -> store "record"
+scene setup {
+  + ingest: Ingest
+  + parse: Parse
+  + enrich: Enrich
+  + store: Store
+  + ingest -> parse
+  + parse -> enrich
+  + enrich -> store
 }
-
-keyframe "add index" {
-  +node index "Index"
-  +edge store index
-  ingest -> parse "raw bytes"
-  parse -> enrich "AST"
-  enrich -> store "record"
-  store -> index "doc"
+scene process {
+  ingest ~> parse: raw bytes
+  parse ~> enrich: AST
+  enrich ~> store: record
+}
+scene "Add index" {
+  + index: Index
+  + store -> index
+  store ~> index: doc
 }
     </div>
 
@@ -87,23 +89,25 @@ keyframe "add index" {
     <div data-markgraf>
 seed 3
 
-keyframe setup {
-  +node producer "Producer"
-  +node broker "Broker"
-  +node log "Log"
-  +node metrics "Metrics"
-  +node alerts "Alerts"
-  +node search "Search"
-  +edge producer broker
-  +edge broker log
-  +edge broker metrics
-  +edge broker alerts
-  +edge broker search
-  producer -> broker "order.created"
-  broker -> log "audit"
-  broker -> metrics "count"
-  broker -> alerts "rule check"
-  broker -> search "index"
+scene setup {
+  + producer: Producer
+  + broker: Broker
+  + log: Log
+  + metrics: Metrics
+  + alerts: Alerts
+  + search: Search
+  + producer -> broker
+  + broker -> log
+  + broker -> metrics
+  + broker -> alerts
+  + broker -> search
+}
+scene publish {
+  producer ~> broker: order.created
+  broker ~> log: audit
+  broker ~> metrics: count
+  broker ~> alerts: rule check
+  broker ~> search: index
 }
     </div>
 
@@ -111,24 +115,26 @@ keyframe setup {
     <div data-markgraf>
 seed 2
 
-keyframe setup {
-  +node client "Client"
-  +node gateway "Gateway"
-  +node authsvc "Auth Service"
-  +node session "Session Store"
-  +node user_db "User DB"
-  +edge client gateway
-  +edge gateway authsvc
-  +edge authsvc user_db
-  +edge authsvc session
-  +edge session gateway
-  +edge gateway client
-  client -> gateway "POST /login"
-  gateway -> authsvc "verify"
-  authsvc -> user_db "SELECT user"
-  authsvc -> session "issue JWT"
-  session -> gateway "JWT"
-  gateway -> client "200 OK"
+scene setup {
+  + client: Client
+  + gateway: Gateway
+  + authsvc: Auth Service
+  + session: Session Store
+  + user_db: User DB
+  + client -> gateway
+  + gateway -> authsvc
+  + authsvc -> user_db
+  + authsvc -> session
+  + session -> gateway
+  + gateway -> client
+}
+scene login {
+  client ~> gateway: POST /login
+  gateway ~> authsvc: verify
+  authsvc ~> user_db: SELECT user
+  authsvc ~> session: issue JWT
+  session ~> gateway: JWT
+  gateway ~> client: 200 OK
 }
     </div>
 
