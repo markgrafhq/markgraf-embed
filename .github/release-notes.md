@@ -1,3 +1,3 @@
-## v0.1.30
+## v0.1.31
 
-- fix(sdf): await all label fonts
+- fix(labels): preserve markup inside code
