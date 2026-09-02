@@ -1,3 +1,3 @@
-## v0.1.28
+## v0.1.29
 
-- fix(labels): preserve styles in token chips
+- fix(sdf): preserve token label fonts
