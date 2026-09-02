@@ -1,3 +1,3 @@
-## v0.1.29
+## v0.1.30
 
-- fix(sdf): preserve token label fonts
+- fix(sdf): await all label fonts
