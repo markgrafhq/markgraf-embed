@@ -1,3 +1,109 @@
-## Unreleased
+## v0.0.30
 
 - fix(labels): preserve markup inside code
+- fix(sdf): await all label fonts
+- fix(sdf): preserve token label fonts
+- fix(labels): preserve styles in token chips
+- fix(labels): preserve escaped delimiters at render boundary
+- fix(labels): centralize styled text rendering
+- feat(labels): render **bold** spans across backends
+- Keep wrapper examples on current React
+- Polish native playback and camera continuity
+- Use spare camera room for useful scale
+- Keep animated camera framing stable
+- Keep native CLI builds compatible with psgo
+- Keep complex animated diagrams readable and spatially coherent
+- fix(dive): prevent portal labels and frames drifting
+- feat: animate label templates and highlights
+- feat(dive): add seeded physical doorways and bend-aware framing
+- fix(dive): clamp retreat camera before handoff
+- fix(dive): clamp camera endpoints before handoff
+- fix(dive): preserve camera through back-to-back enters
+- fix(dive): keep nested levels visible across clip gaps
+- fix(dive): match doorway lip shadow paint
+- fix(dive): render doorway lip persistently
+- fix(dive): retain doorway lip through zoom-out
+- fix(dive): restore doorway lip and crossing depth
+- wip: checkpoint pre-lip rendering work
+- fix(dive): restore monotonic no-fade fly-through
+- make terminal release smoke noninteractive
+- bound terminal release smoke shutdown
+- preserve Metal rendering while deferring GUI init
+- defer GUI backend initialization
+- derive CLI version from release tag
+- preserve staged camera continuity
+- use upstream Go FFI module
+- keep site Bun lock synchronized
+- release application integrations automatically
+- wait for npm before syncing wrappers
+- release downstream integrations independently
+- introduce semantic scene interpreters
+- fix camera framing for lazy scenes
+- compact lazy topology schedule gaps
+- add React title visibility option
+- fix React hook JavaScript wrapper
+- fix(camera): stabilize action focus and dive zoom
+- fix(camera): hold nested dive home between actions
+- fix(camera): bound action panning by revealed subgraph
+- fix(camera): cap readable text at eleven pixels
+- fix(camera): land dives at first child action
+- fix(animation): reveal topology lazily before token travel
+- fix(camera): keep action x within platformer dead-zone
+- fix(camera): keep action focus sticky between nearby hops
+- fix(animation): show topology before token travel
+- fix(dsl): reject unused animated flow topology
+- checkpoint: accept playback options through play wrapper
+- checkpoint: wrap react hook effects for javascript consumers
+- checkpoint: rebuild react bundle after playback target fix
+- checkpoint: make unreachable cue targets fall through to boundary
+- checkpoint: relax cue test timing assumptions
+- checkpoint: build react bundle with cue API
+- checkpoint: expose cue playback API from react hook
+- checkpoint: fix crossed cue helper layout
+- checkpoint: add playback cue controls to embed handle
+- checkpoint: cover step and cue scheduling in tests
+- checkpoint: construct indexed token cue records
+- checkpoint: fix cue schedule node id import
+- checkpoint: step cue parser and schedule metadata
+- 
+- fix(animation): keep action labels readable
+- feat(animation): reveal topology by token travel
+- fix(animation): keep token labels in frame
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- build(embed): refresh bundled output
+- fix(diagnostics): suggest missing inside block
+- fix(embed
