@@ -1,0 +1,106 @@
+End User License Agreement
+
+Coppers and Brasses
+
+1. Definitions
+
+"Licensor" is the company providing the License to the Licensee, in this case, Fonderie Typographique Coppers and Brasse Inc., Coppers and Brasses or the Foundry.
+
+"Licensee" is the entity or organisation purchasing a License to use the Font Software.
+
+"Licensee Size" is the total number of employees, including temporary staff, working for the licensee.
+
+"Font Software" refers to the Font Files (Fonts) specified on the sales receipt.
+
+"Designer" is any entity (such as a design agency or studio, individual designer, or other service bureau) that provides services to the Licensee involving use of the Fonts.
+
+"Subcontractor" is any third party using the Fonts on behalf of the Licensee. Unless the Designer and Licensee are the same entity (i.e. the Designer is creating work for their own organisation), the Designer is a Subcontractor of the Licensee.
+
+
+2. Agreement and grant of rights
+
+The following is a legal agreement between Fonderie Typographique Coppers and Brasses Inc. (Coppers and Brasses, the Licensor) and You (the Licensee, whose name is specified during the checkout process and appears on the sales receipt).
+
+By purchasing, downloading, installing and or using the Font Software, You acknowledge that you have read, understood, and agree to be bound by the terms of this End User License Agreement (EULA, License or Agreement).
+
+What You are purchasing from Coppers and Brasses is a License to use the Font Software for the purposes allowed by this agreement. Once the full payment for the appropriate License is processed, Coppers and Brasses will issue You a limited, non-exclusive, non-transferable, non-assignable License for the use of the Font Software.
+
+You are not purchasing the rights of the Font Software. Coppers and Brasses together with any successors and assigns retain all rights to the Font Software, the trademarks, the copyrights and the designs embodied in the Font Software. You hereby agree that this term is contractual in nature and that the unauthorized use of the design of the Font and/or the Font Software shall be an infringement of Coppers and Brasses’ rights, causing significant monetary harm. Any rights that are not specifically given by us in this Agreement are reserved.
+
+
+3. License Scope
+
+All Licensing is one-time, perpetual, and upgradable. If your current use of the Font Software exceeds the use allowed by your License, You agree to immediately contact Coppers and Brasses to purchase an upgrade to the License. 
+
+This License allows the Licensee to use the Font Software within the organization (or by the entity) specified on the sales receipt.
+
+The fonts are provided in OTF (OpenType CFF), TTF (OpenType TrueType), WOFF, WOFF2 and EOT (Embedded OpenType) formats. Additional formats may be available upon request.
+
+You may install the Font Software on any number of devices within your organization. You may use the Font Software on any number of websites owned and controlled by your organization. You may embed the Font Software in static documents (such as PDFs), eBooks, digital products, installable applications and other media produced for your organisation. 
+
+You may only serve the Fonts on websites using the CSS @font-face rule.
+
+You may not host the Font Software on any public servers or repositories (ex: Github, Amazon S3, etc.) where they would be accessible to unlicensed third parties.
+
+You may not modify, change, alter, edit, decompile, reverse engineer, disassemble, convert, reformat, or create derivative works of the Font Software in any way.
+
+You may not commission a third party to modify the Font Software without the prior written permission of Coppers and Brasses.
+
+You may not distribute, sell, lend, sublicense, gift, make available, lease and/or rent the Font Software to any third party (unless specifically permitted in this agreement).
+
+You may not transfer this Agreement or any of your rights hereunder to any third party without the prior written permission of Coppers and Brasses.
+
+You may not use the Font Software in any application in which an unlicensed third party could use it to customise their own designs or create static documents, images, videos, animations (such as but not limited to an online design application or print-on-demand services).
+
+You may not use the Font Software to produce alphabet products such as, but not limited to: house numbers, stamp sets, rub-on letters, adhesive letters, alphabet punch, die sets or other methods for use in making such products. Any such use requires the purchase of a special License. Contact us for more information about this type of licensing.
+
+
+4. Subcontractors
+
+A Commercial License permits any number of Subcontractors to use the Fonts, in accordance with this Agreement, on behalf of the Licensee. You are permitted to send copies of the Fonts to Subcontractors for this purpose. You must ensure that any Subcontractor has read and agreed to the terms of this Agreement before receiving the Fonts.
+
+If a Subcontractor stops working for the Licensee, they must destroy all copies of the Fonts in their possession. At no time is any Subcontractor permitted to use the Fonts on behalf of themselves or any party other than the Licensee.
+
+Unless a specific exception is granted by Coppers and Brasses, a Subcontractor must not be a subsidiary or parent organisation of the Licensee.
+
+
+5. Purchase by a designer
+
+A Designer can purchase a Commercial license on behalf of the Licensee (their client), provided that: the Licensee and Licensee Size are correctly specified during the checkout process; the Licensee has read and agreed to the terms of this Agreement; and the Licensee has expressly permitted the Designer to complete the purchase on their behalf.
+
+The Designer is not permitted to quote or invoice the Licensee for any price other than the amount they actually paid for the license.
+
+
+6. Warranty
+
+If you encounter an issue or problem with the Font Software, Coppers and Brasses will make a good faith effort to provide a fix or replacement within 30 days of being notified. If the issue cannot be reasonably remedied, Coppers and Brasses may at their discretion offer to refund you, at which point this Agreement will immediately terminate. This shall be the limit of our liability in this transaction. In no event shall any liability of Coppers and Brasses exceed the purchase price of the License for the Font Software or replacement of the Font Software itself.
+
+Coppers and Brasses shall in no event be liable to you or any other third party for any direct, indirect, consequential or incidental damages arising out of the use or inability to use the Fonts, even if notified in advance.
+
+You agree to indemnify and hold Coppers and Brasses harmless from and against any claims or damage which may result from your misuse of the Fonts or breach of this Agreement.
+
+7. Legal
+
+This License Agreement is subject to and governed by the laws of Canada.
+
+This License Agreement is effective upon full payment of the amount charged for the License. This License may be terminated without notice if You breach and/or fail to comply with any term or terms contained herein.
+
+Coppers and Brasses reserves the right to amend or modify this License Agreement at any time and without prior notification.
+
+This Agreement constitutes the entire understanding between Coppers and Brasses and the Licensee (You) and supersedes all previous agreements, promises, representations and negotiations between the parties, wether verbal or in writing.
+
+No amendment, modification or waiver will be valid or enforceable unless materialised in an agreement signed by Coppers and Brasses.
+
+If any part of this Agreement is found void or unenforceable, it will not affect the validity of the rest of the Agreement, which shall remain valid and enforceable according to its terms. 
+
+The failure or election not to enforce a provision of this Agreement by Coppers and Brasses is not a waiver of its right to do so later.
+
+The numberings and section titles within this Agreement are for convenience and shall not affect or alter the meaning or construction of any terms or provisions of the Agreement.
+
+
+
+For any licensing situations not covered in this agreement or if you have any questions regarding this Agreement, please contact us at hello@coppersandbrasses.com.
+
+Thank you.
+
+Version 5.0 issued in June 2022

@@ -1,12 +1,21 @@
 # @markgrafhq/markgraf-embed
 
-Drop-in Canvas2D player for [markgraf](https://github.com/i-am-the-slime/markgraf) animations.
+Drop-in Canvas2D and SVG player for [markgraf](https://github.com/i-am-the-slime/markgraf) animations.
 
 Decorate any element with `data-markgraf` containing markgraf source text and
 the script replaces it with an interactive player — scrub bar, keyframe ticks,
 play/pause, speed control, single-active-player coordination across multiple
 embeds on the same page, and Space toggles whichever player is currently
 active.
+
+## Browser requirements
+
+The default Canvas player compiles and renders in an inline Web Worker. It requires
+Workers, transferable OffscreenCanvas, FinalizationRegistry, and worker-side CSS
+Font Loading. Content Security Policies must permit `worker-src blob:`.
+There is no automatic renderer fallback. For hosts that forbid workers, set
+`data-markgraf-renderer="svg"` on the embed element to select the main-thread
+SVG player explicitly. Bundled fonts load before the ready callback and first frame.
 
 ## From a CDN (no build step)
 
@@ -49,13 +58,115 @@ Set inline CSS on the embed element:
 
 ## Programmatic mount
 
-The script also exposes `window.markgraf`:
+The script exposes `window.markgraf`. Mounting is asynchronous and returns a
+disposer immediately. The optional fourth argument receives the ready API after
+compilation and first draw; it is never called after disposal or remount.
 
 ```js
-markgraf.mount(element, "seed 1\nscene v1 { + a: A }");
-markgraf.mountAll();           // scan the whole document
+const dispose = markgraf.mount(element, source, true, api => {
+  // true starts paused; omit it or pass false for the existing autoplay behavior.
+  const unsubscribe = api.onComplete(event => {
+    console.log(event.reason, event.time);
+  });
+  api.playNext({ duration: 0.8, easing: { bounce: 0 } });
+  // Call unsubscribe() when this listener is no longer needed.
+});
+// Later, when removing/replacing the player:
+dispose();
+
+markgraf.mountAll();            // scan the whole document
 markgraf.mountAll(myContainer); // scan a subtree
 ```
+
+Remounting the same element disposes its previous player. The disposer is
+idempotent and cancels pending initialization as well as active playback.
+TypeScript declarations are included; import the side-effect package to declare
+`window.markgraf`, and use `import type { MarkgrafApi } from
+"@markgrafhq/markgraf-embed"` for the callback API. The bundle has no runtime
+ESM named exports and requires neither React nor Motion.
+
+### Ready API
+
+| API | Behavior |
+| --- | --- |
+| `time`, `keyframe`, `playing` | live observation getters |
+| `ready`, `duration`, `cues`, `steps` | readiness, total seconds, scheduled cue/step metadata |
+| `play(options?)`, `playWith(options?)`, `pause()`, `toggle()` | ordinary playback controls |
+| `seek(seconds)`, `seekCue(id)`, `seekStep(name)` | clamped seek, retaining playing/paused state |
+| `setSpeed(speed)` | normal playback is `1`; captured spring-move deadlines do not change |
+| `playToCue(id, options?)`, `playToStep(name, options?)` | bounded playback to an explicit cue/step |
+| `playNext(options?)`, `playPrevious(options?)` | next/previous matching cue, or end/start boundary |
+| `subscribe(callback)` | current snapshot immediately, then playback updates |
+| `onCueEnter(callback)`, `onStepEnter(name, callback)` | cue events in traversal order |
+| `onComplete(callback)` | one target/boundary completion event per completed move |
+
+All subscription methods return an ordinary unsubscribe function. Snapshot
+callbacks receive `{ time, keyframe, playing }`. Cue metadata includes stable
+IDs, scheduler indices, timestamps, and graph paths.
+
+### Finite spring-shaped bounded playback
+
+All four bounded methods accept identical options to the React package:
+
+```js
+const options = { duration: 0.8, easing: { bounce: 0 } };
+api.playToCue(cueId, options);
+api.playToStep("received", options);
+api.playNext(options);
+api.playPrevious(options);
+```
+
+`easing: {}` or `easing: { bounce: 0 }` opts into finite, monotonic
+spring-shaped motion. The playhead never overshoots, lands exactly at the
+target timestamp, and has zero endpoint velocity. No animation dependency or
+consumer timer is needed.
+
+The clock starts when the shared engine accepts the command in the Canvas
+worker. Dropped frames do not extend the move: the first frame at or after its
+deadline renders the exact target and emits completion.
+
+- With `easing` or `arrival`, a positive finite `duration` (seconds) takes
+  precedence over `speed`. Otherwise the duration is derived once from the
+  distance and normalized supplied speed, or current speed when omitted.
+- Speed and duration are local to the opted-in move. `setSpeed` affects
+  subsequent runs without changing the current move's captured deadline.
+- Without either new field, playback remains constant-speed with legacy
+  **speed-first** precedence over duration.
+- Invalid/nonpositive durations are ignored. A zero-distance move completes
+  immediately without a pulse.
+- `stopAt: ["step"]` or `["tokenLine"]` filters next/previous selection; no
+  remaining matching cue means the end/start boundary.
+
+### Optional arrival emphasis
+
+Nonzero playhead bounce is rejected. To bounce a node visually, select it
+explicitly; for example, if `"received"` is a step and `"api"` is inside `"cluster"`:
+
+```js
+api.playToStep("received", {
+  duration: 0.8,
+  arrival: { node: "api", path: ["cluster"], bounce: 0.25 },
+});
+```
+
+Arrival alone also opts into timed spring-shaped playback. `node` is the exact
+node ID and `path` is its ancestor-node path, outermost first. Omit `path` for
+`[]`, the root graph. Markgraf never infers a node from a cue, token, or camera.
+Only the selected node pulses during the last 45% of the move: it grows to
+`1.08`, then springs back to normal by the deadline. Arrival `bounce` defaults
+to `0.25`; finite values are clamped to `[0, 1]`.
+
+### Cancellation and event order
+
+Pause, any seek, a replacement move, and disposal cancel the active bounded
+move and clear emphasis without completion. Seeking preserves the current
+playing/paused state; it does not implicitly pause.
+
+Cue events follow scheduler-index order in the direction of travel, including
+coincident cues only as far as the selected target. Completion fires exactly
+once after those cue events and the paused-state update, with the exact target
+time. Its `reason` is `"target"` or `"boundary"`. Call the returned unsubscribe
+functions to stop observations; disposal tears down the player.
 
 ## Auto-mount details
 

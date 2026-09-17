@@ -1,17 +1,22 @@
 {
   "name": "@markgrafhq/markgraf-embed",
-  "version": "0.0.31",
+  "version": "0.0.41",
   "description": "Embeddable Canvas2D player for markgraf animations. Drop-in for any HTML page or bundler.",
   "type": "module",
   "main": "./dist/markgraf-embed.js",
   "module": "./dist/markgraf-embed.js",
   "browser": "./dist/markgraf-embed.js",
+  "types": "./dist/markgraf-embed.d.ts",
   "style": "./dist/markgraf-embed.css",
   "exports": {
     ".": {
+      "types": "./dist/markgraf-embed.d.ts",
       "default": "./dist/markgraf-embed.js"
     },
-    "./dist/markgraf-embed.js": "./dist/markgraf-embed.js",
+    "./dist/markgraf-embed.js": {
+      "types": "./dist/markgraf-embed.d.ts",
+      "default": "./dist/markgraf-embed.js"
+    },
     "./dist/markgraf-embed.css": "./dist/markgraf-embed.css",
     "./css": {
       "style": "./dist/markgraf-embed.css",
