@@ -94,9 +94,27 @@ export interface MarkgrafApi extends MarkgrafTickEvent {
   onComplete(callback: (event: MarkgrafCompleteEvent) => void): () => void;
 }
 
+/**
+ * Live DOM content registered to one logical node. `path` is its ancestor
+ * address, outermost first; omit it for a root-level node. Markgraf calls
+ * `mount` once per address and calls its returned cleanup once when removed or
+ * disposed. The mounted element fills the node's declared logical bounds.
+ */
+export interface MarkgrafNodeViewBinding {
+  node: string;
+  path?: string[];
+  mount(element: Element): () => void;
+}
+
 export interface MarkgrafEmbed {
   /** onReady runs after compilation and first draw, never after cancellation/remount. */
-  mount(element: HTMLElement, source: string, startPaused?: boolean, onReady?: (api: MarkgrafApi) => void): () => void;
+  mount(
+    element: HTMLElement,
+    source: string,
+    startPaused?: boolean,
+    onReady?: (api: MarkgrafApi) => void,
+    nodeViews?: readonly MarkgrafNodeViewBinding[],
+  ): () => void;
   mountAll(root?: ParentNode): void;
   tryParse(source: string): { ok: true } | { ok: false; error: string };
 }

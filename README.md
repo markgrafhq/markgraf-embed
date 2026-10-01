@@ -85,6 +85,40 @@ TypeScript declarations are included; import the side-effect package to declare
 "@markgrafhq/markgraf-embed"` for the callback API. The bundle has no runtime
 ESM named exports and requires neither React nor Motion.
 
+### Live node views
+
+`mount` accepts an optional fifth `nodeViews` array. Each binding identifies a
+DSL node by `{ node, path }`, where `path` contains ancestor node IDs only,
+outermost first. Thus a root `api` is `{ node: "api" }`; an `api` inside
+`inside system { ... }` is `{ node: "api", path: ["system"] }`.
+
+```js
+const dispose = markgraf.mount(element, source, true, undefined, [
+  {
+    node: "api",
+    path: ["system"],
+    mount(host) {
+      host.replaceChildren(Object.assign(document.createElement("button"), {
+        textContent: "Retry",
+        onclick: retry,
+      }));
+      return () => host.replaceChildren();
+    },
+  },
+]);
+```
+
+Each binding mounts once for the lifetime of that player. Its cleanup runs
+once on disposal or remount; hiding a node during travel does not dispose its
+content. The host fills the node's declared logical width and height, not the
+projected pixel box. A registered face keeps its native outline; an
+unregistered face retains its normal label fallback. Content
+remains live rather than being a screenshot, but is inert during native travel
+and miniature/background modes. A reverse-facing node paints an opaque blank
+native back, so no front label or child view is visible through it.
+Flat Canvas/SVG themes support node views; isometric themes and static exports
+retain the DSL representation.
+
 ### Ready API
 
 | API | Behavior |
