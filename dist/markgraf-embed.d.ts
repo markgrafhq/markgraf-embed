@@ -107,7 +107,11 @@ export interface MarkgrafNodeViewBinding {
 }
 
 export interface MarkgrafEmbed {
-  /** onReady runs after compilation and first draw, never after cancellation/remount. */
+  /**
+   * onReady runs after compilation and first draw, never after cancellation/remount.
+   * The element's outer surface is transparent by default; set
+   * `data-markgraf-background="true"` to paint the selected theme's paper.
+   */
   mount(
     element: HTMLElement,
     source: string,

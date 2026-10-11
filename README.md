@@ -56,6 +56,23 @@ Set inline CSS on the embed element:
 <div data-markgraf style="--mg-max-height: 80svh">…</div>
 ```
 
+## Background
+
+Embeds leave their outer Canvas or SVG surface transparent by default, for both
+animated and static sequence sources. Opt into the selected theme's paper with
+`data-markgraf-background="true"`:
+
+```html
+<div data-markgraf data-markgraf-background="true">
+  + client: Client
+  + api: API
+  client ~> api: request
+</div>
+```
+
+This changes only the outer surface; diagram nodes, captions, and nested
+surfaces retain their intended fills.
+
 ## Programmatic mount
 
 The script exposes `window.markgraf`. Mounting is asynchronous and returns a
