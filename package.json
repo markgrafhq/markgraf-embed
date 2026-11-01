@@ -1,6 +1,6 @@
 {
   "name": "@markgrafhq/markgraf-embed",
-  "version": "0.0.48",
+  "version": "0.0.51",
   "description": "Embeddable Canvas2D player for markgraf animations. Drop-in for any HTML page or bundler.",
   "type": "module",
   "main": "./dist/markgraf-embed.js",
@@ -22,7 +22,11 @@
       "style": "./dist/markgraf-embed.css",
       "default": "./dist/markgraf-embed.css"
     },
-    "./dist/CommitMono-Regular.woff2": "./dist/CommitMono-Regular.woff2"
+    "./dist/VictorMono-Medium.woff2": "./dist/VictorMono-Medium.woff2",
+    "./dist/VictorMono-Bold.woff2": "./dist/VictorMono-Bold.woff2",
+    "./dist/VictorMono-MediumItalic.woff2": "./dist/VictorMono-MediumItalic.woff2",
+    "./dist/VictorMono-BoldItalic.woff2": "./dist/VictorMono-BoldItalic.woff2",
+    "./dist/VictorMono-LICENSE.txt": "./dist/VictorMono-LICENSE.txt"
   },
   "files": [
     "dist",

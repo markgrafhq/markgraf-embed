@@ -41,6 +41,18 @@ import "@markgrafhq/markgraf-embed/css";
 import "@markgrafhq/markgraf-embed"; // side-effect: registers window.markgraf, auto-mounts
 ```
 
+## Still pictures
+
+Every embed without transitions, travelling content, or dives renders as a
+settled picture, regardless of source syntax. This includes `still` documents,
+standalone still or title blocks, and single parallel graph snapshots.
+There is no play overlay, transport bar, scrubber, speed selector, or playback
+keyboard focus. Hover highlighting remains available.
+
+Changing snapshots, travelling content, and dives retain their playback controls.
+Static ready handles have a duration of zero; playing or seeking does not
+change the picture.
+
 ## Sizing
 
 Set inline CSS on the embed element:
