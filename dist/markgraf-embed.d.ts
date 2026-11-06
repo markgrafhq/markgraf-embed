@@ -67,6 +67,12 @@ export interface MarkgrafTickEvent {
   readonly playing: boolean;
 }
 
+/** A node by its DSL ID and its ancestor node IDs, outermost first. */
+export interface MarkgrafNodeAddress {
+  readonly node: string;
+  readonly path: readonly string[];
+}
+
 /** Ready player with live observation getters; mounting returns its disposer. */
 export interface MarkgrafApi extends MarkgrafTickEvent {
   readonly ready: true;
@@ -92,6 +98,11 @@ export interface MarkgrafApi extends MarkgrafTickEvent {
   onCueEnter(callback: (cue: MarkgrafCue) => void): () => void;
   onStepEnter(stepName: string, callback: (cue: MarkgrafStepCue) => void): () => void;
   onComplete(callback: (event: MarkgrafCompleteEvent) => void): () => void;
+  /**
+   * The node drawn under a page coordinate (e.g. a click's `clientX`/`clientY`),
+   * or `null` over empty space. `path` holds ancestor node IDs, outermost first.
+   */
+  nodeAt(clientX: number, clientY: number): MarkgrafNodeAddress | null;
 }
 
 /**

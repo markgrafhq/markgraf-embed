@@ -162,6 +162,7 @@ retain the DSL representation.
 | `subscribe(callback)` | current snapshot immediately, then playback updates |
 | `onCueEnter(callback)`, `onStepEnter(name, callback)` | cue events in traversal order |
 | `onComplete(callback)` | one target/boundary completion event per completed move |
+| `nodeAt(clientX, clientY)` | `{ node, path }` of the node drawn at a page point, or `null` |
 
 All subscription methods return an ordinary unsubscribe function. Snapshot
 callbacks receive `{ time, keyframe, playing }`. Cue metadata includes stable
