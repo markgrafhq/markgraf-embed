@@ -91,6 +91,14 @@ export interface MarkgrafApi extends MarkgrafTickEvent {
   playToStep(stepName: string, options?: MarkgrafPlaybackOptions): void;
   playNext(options?: MarkgrafPlaybackOptions): void;
   playPrevious(options?: MarkgrafPlaybackOptions): void;
+  /**
+   * Plays the part of the film that source lines `line` to `endLine` (1-based)
+   * make, again and again, with a short rest on its last frame. A seek or a
+   * bounded move ends the loop. Lines that make nothing end it too.
+   */
+  loopLines(line: number, endLine: number): void;
+  /** Ends a loop that `loopLines` started; the film goes on from where it is. */
+  endLoop(): void;
   /** Does not change an opted-in move's captured deadline. */
   setSpeed(speed: number): void;
   /** Immediately emits the current snapshot, then subsequent playback updates. */

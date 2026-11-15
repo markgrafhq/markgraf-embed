@@ -1,6 +1,6 @@
 # @markgrafhq/markgraf-embed
 
-Drop-in Canvas2D and SVG player for [markgraf](https://github.com/i-am-the-slime/markgraf) animations.
+Drop-in canvas player for [markgraf](https://github.com/i-am-the-slime/markgraf) animations.
 
 Decorate any element with `data-markgraf` containing markgraf source text and
 the script replaces it with an interactive player — scrub bar, keyframe ticks,
@@ -10,12 +10,10 @@ active.
 
 ## Browser requirements
 
-The default Canvas player compiles and renders in an inline Web Worker. It requires
+The player compiles and renders each film in an inline Web Worker. It requires
 Workers, transferable OffscreenCanvas, FinalizationRegistry, and worker-side CSS
-Font Loading. Content Security Policies must permit `worker-src blob:`.
-There is no automatic renderer fallback. For hosts that forbid workers, set
-`data-markgraf-renderer="svg"` on the embed element to select the main-thread
-SVG player explicitly. Bundled fonts load before the ready callback and first frame.
+Font Loading. Content Security Policies must permit `worker-src blob:`. Bundled
+fonts load before the ready callback and first frame.
 
 ## From a CDN (no build step)
 
@@ -70,7 +68,7 @@ Set inline CSS on the embed element:
 
 ## Background
 
-Embeds leave their outer Canvas or SVG surface transparent by default, for both
+Embeds leave their outer surface transparent by default, for both
 animated and static sequence sources. Opt into the selected theme's paper with
 `data-markgraf-background="true"`:
 
@@ -145,7 +143,7 @@ unregistered face retains its normal label fallback. Content
 remains live rather than being a screenshot, but is inert during native travel
 and miniature/background modes. A reverse-facing node paints an opaque blank
 native back, so no front label or child view is visible through it.
-Flat Canvas/SVG themes support node views; isometric themes and static exports
+Flat themes support node views; isometric themes and static exports
 retain the DSL representation.
 
 ### Ready API
