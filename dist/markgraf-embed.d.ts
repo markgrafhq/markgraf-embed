@@ -130,6 +130,9 @@ export interface MarkgrafEmbed {
    * onReady runs after compilation and first draw, never after cancellation/remount.
    * The element's outer surface is transparent by default; set
    * `data-markgraf-background="true"` to paint the selected theme's paper.
+   * `data-markgraf-colors="accent=#E3EA5E; danger=oklch(0.6 0.2 25)"` colours
+   * roles: `accent` is the travelling dot, its chip and trail; a box or dot
+   * role takes its own. A film's `color` header lines win over the attribute.
    */
   mount(
     element: HTMLElement,
